@@ -1,0 +1,20 @@
+fos_rest:
+#    exception:
+#      enabled: true
+#      map_exception_codes: true
+#      codes:
+#      messages:
+    param_fetcher_listener: force
+    allowed_methods_listener: true
+    disable_csrf_role: ROLE_USER
+    body_listener: true
+    format_listener:
+      enabled: true
+      rules:
+        - { path: '^/api', priorities: [ 'json' ], fallback_format: json, prefer_extension: true }
+        - { path: '^/', stop: true }
+
+    view:
+      view_response_listener: 'force'
+      formats:
+        json: true

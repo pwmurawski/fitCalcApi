@@ -1,0 +1,22 @@
+User:
+    resource: ../src/User/Controller/
+    type: annotation
+
+FoodProduct:
+    resource: ../src/FoodProduct/Controller/
+    type: annotation
+
+Meal:
+    resource: ../src/Meal/Controller/
+    type: annotation
+
+SelectedProduct:
+    resource: ../src/SelectedProduct/Controller/
+    type: annotation
+    
+api_login_check:
+    path: /api/login
+
+kernel:
+    resource: ../src/Kernel.php
+    type: annotation
