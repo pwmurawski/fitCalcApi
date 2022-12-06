@@ -42,7 +42,9 @@ class Post extends AbstractFOSRestController
         $this->postUseCase->execute($form->getData());
 
         return $this->view([
-            'id' => $id,
+            'data' => [
+                'id' => $id,
+            ],
         ], Response::HTTP_OK);
     }
 }

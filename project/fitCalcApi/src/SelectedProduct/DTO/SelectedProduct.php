@@ -15,7 +15,7 @@ class SelectedProduct
         private string $mealId,
         private string $foodProductId,
         private float $weight,
-        private DateTimeInterface $dateTime,
+        private string $dateTime,
     ) {
     }
 
@@ -44,7 +44,7 @@ class SelectedProduct
         return $this->weight;
     }
 
-    public function getDateTime(): DateTimeInterface
+    public function getDateTime(): string
     {
         return $this->dateTime;
     }

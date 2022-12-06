@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\FormFactoryInterface;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
+use FOS\RestBundle\View\View;
 
 final class PostRegister extends AbstractFOSRestController
 {
@@ -24,7 +25,7 @@ final class PostRegister extends AbstractFOSRestController
     /**
      * @Route("/api/register", name="user.register", methods={"POST"})
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): View
     {
         $userId = Uuid::v4();
 
@@ -38,7 +39,9 @@ final class PostRegister extends AbstractFOSRestController
         $this->registerUserUseCase->execute($form->getData());
 
         return $this->view([
-            'id' => $userId,
+            'data' => [
+                'id' => $userId,
+            ]
         ], Response::HTTP_OK);
     }
 }

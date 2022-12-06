@@ -24,7 +24,7 @@ class Delete extends AbstractFOSRestController
     {
         try {
             $this->deleteUseCase->execute($id, $this->getUser()->getId());
-            return $this->view([], Response::HTTP_NO_CONTENT);
+            return $this->view([], Response::HTTP_OK);
         } catch (SelectedProductNotFoundException $e) {
             return $this->view($e->getMessage(), Response::HTTP_NOT_FOUND);
         }

@@ -43,7 +43,7 @@ class Put extends AbstractFOSRestController
 
         try {
             $this->putUseCase->execute($form->getData());
-            return $this->view([], Response::HTTP_NO_CONTENT);
+            return $this->view(null, Response::HTTP_NO_CONTENT);
         } catch (FoodProductNotFoundException $e) {
             $form->addError(new FormError($e->getMessage()));
             return $this->view($form, Response::HTTP_NOT_FOUND);

@@ -10,6 +10,7 @@ use Symfony\Component\Uid\Uuid;
 use App\SelectedProduct\DTO\SelectedProduct;
 use App\SelectedProduct\Factory\SelectedProductFactoryInterface;
 use App\SelectedProduct\Repository\SelectedProductRepositoryInterface;
+use DateTime;
 
 class PostUseCase
 {
@@ -29,7 +30,7 @@ class PostUseCase
             $this->mealRepository->getById(new Uuid($selectedProductData->getMealId())),
             $this->foodProductRepository->getById(new Uuid($selectedProductData->getFoodProductId())),
             $selectedProductData->getWeight(),
-            $selectedProductData->getDateTime(),
+            new DateTime($selectedProductData->getDateTime()),
         );
 
         $this->selectedProductRepository->save($selectedProduct);

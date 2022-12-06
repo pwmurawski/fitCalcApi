@@ -26,7 +26,7 @@ class RegisterUserType extends AbstractType implements DataTransformerInterface
         $this->userId = $options['userId'];
 
         $builder->add(
-            'email',
+            'username',
             EmailType::class,
             [
                 'constraints' => [
@@ -69,12 +69,12 @@ class RegisterUserType extends AbstractType implements DataTransformerInterface
     public function reverseTransform($value): ?CreateUser
     {
         if (
-            null === $value['email'] ||
+            null === $value['username'] ||
             null === $value['password']
         ) {
             return null;
         }
 
-        return new CreateUser($this->userId, $value['email'], $value['password']);
+        return new CreateUser($this->userId, $value['username'], $value['password']);
     }
 }

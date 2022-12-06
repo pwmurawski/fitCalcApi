@@ -64,12 +64,11 @@ class PostType extends AbstractType implements DataTransformerInterface
 
         $builder->add(
             'dateTime',
-            DateType::class,
+            TextType::class,
             [
-                'required' => true,
-                'widget' => 'single_text',
-                'format' => DateType::HTML5_FORMAT,
-                'constraints' => [new NotBlank()],
+                'constraints' => [
+                    new NotBlank()
+                ],
             ]
         );
 
