@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\SelectedProduct\Entity;
 
-use App\FoodProduct\Entity\FoodProduct;
+use App\SelectedProduct\Entity\ValueObject\FoodProduct;
 use App\Meal\Entity\Meal;
 use Symfony\Component\Uid\Uuid;
 use Doctrine\ORM\Mapping as ORM;
@@ -34,10 +34,7 @@ class SelectedProduct
      */
     private Meal $meal;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=FoodProduct::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
+    /** @ORM\Embedded(class=FoodProduct::class) */
     private FoodProduct $foodProduct;
 
     /**

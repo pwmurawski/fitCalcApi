@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\SelectedProduct\Factory;
 
-use App\FoodProduct\Entity\FoodProduct;
+use App\SelectedProduct\Entity\ValueObject\FoodProduct;
 use App\Meal\Entity\Meal;
 use Symfony\Component\Uid\Uuid;
 use App\SelectedProduct\Entity\SelectedProduct;

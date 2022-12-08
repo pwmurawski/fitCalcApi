@@ -10,6 +10,7 @@ use Symfony\Component\Uid\Uuid;
 use App\SelectedProduct\DTO\SelectedProduct;
 use App\SelectedProduct\Factory\SelectedProductFactoryInterface;
 use App\SelectedProduct\Repository\SelectedProductRepositoryInterface;
+use App\SelectedProduct\Entity\ValueObject\FoodProduct;
 use DateTime;
 
 class PostUseCase
@@ -24,11 +25,22 @@ class PostUseCase
 
     public function execute(SelectedProduct $selectedProductData): void
     {
+        $foodProduct = $this->foodProductRepository->getById(new Uuid($selectedProductData->getFoodProductId()));
+
+        $foodProductVO = new FoodProduct(
+            $foodProduct->getName(),
+            $foodProduct->getKcal(),
+            $foodProduct->getProtein(),
+            $foodProduct->getFat(),
+            $foodProduct->getCarbs(),
+            $foodProduct->getCode()
+        );
+
         $selectedProduct = $this->selectedProductFactory->create(
             $selectedProductData->getId(),
             $selectedProductData->getUserId(),
             $this->mealRepository->getById(new Uuid($selectedProductData->getMealId())),
-            $this->foodProductRepository->getById(new Uuid($selectedProductData->getFoodProductId())),
+            $foodProductVO,
             $selectedProductData->getWeight(),
             new DateTime($selectedProductData->getDateTime()),
         );
