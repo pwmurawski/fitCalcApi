@@ -44,6 +44,13 @@ doctrine:
                 prefix: 'App\SelectedProduct\Entity'
                 alias: SelectedProduct
 
+            DailyGoals:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/DailyGoals/Entity'
+                prefix: 'App\DailyGoals\Entity'
+                alias: DailyGoals
+
 when@test:
     doctrine:
         dbal:

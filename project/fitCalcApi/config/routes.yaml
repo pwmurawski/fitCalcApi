@@ -13,6 +13,10 @@ Meal:
 SelectedProduct:
     resource: ../src/SelectedProduct/Controller/
     type: annotation
+
+DailyGoals:
+    resource: ../src/DailyGoals/Controller/
+    type: annotation
     
 api_login_check:
     path: /api/login

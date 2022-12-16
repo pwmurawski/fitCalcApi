@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20221207154934 extends AbstractMigration
+final class Version20221215173135 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,6 +20,9 @@ final class Version20221207154934 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
+        $this->addSql('CREATE TABLE "dailyGoals" (id UUID NOT NULL, user_id UUID NOT NULL, kcal DOUBLE PRECISION NOT NULL, protein DOUBLE PRECISION NOT NULL, fat DOUBLE PRECISION NOT NULL, carbs DOUBLE PRECISION NOT NULL, date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('COMMENT ON COLUMN "dailyGoals".id IS \'(DC2Type:uuid)\'');
+        $this->addSql('COMMENT ON COLUMN "dailyGoals".user_id IS \'(DC2Type:uuid)\'');
         $this->addSql('CREATE TABLE "foodProduct" (id UUID NOT NULL, user_id UUID NOT NULL, name VARCHAR(255) NOT NULL, kcal DOUBLE PRECISION NOT NULL, protein DOUBLE PRECISION NOT NULL, fat DOUBLE PRECISION NOT NULL, carbs DOUBLE PRECISION NOT NULL, code VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('COMMENT ON COLUMN "foodProduct".id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN "foodProduct".user_id IS \'(DC2Type:uuid)\'');
@@ -41,6 +44,7 @@ final class Version20221207154934 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SCHEMA public');
         $this->addSql('ALTER TABLE "selectedProduct" DROP CONSTRAINT FK_196E77F5639666D6');
+        $this->addSql('DROP TABLE "dailyGoals"');
         $this->addSql('DROP TABLE "foodProduct"');
         $this->addSql('DROP TABLE "meal"');
         $this->addSql('DROP TABLE "selectedProduct"');
